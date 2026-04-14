@@ -4,7 +4,7 @@ const WHATSAPP_URL = "https://wa.me/919877695827?text=Hi+Elora%2C+I%27m+interest
 
 export default function HeroSection() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-screen items-end justify-center overflow-hidden pb-16 md:items-center md:pb-0">
       {/* Background image */}
       <img
         src={heroImage}
@@ -17,7 +17,7 @@ export default function HeroSection() {
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[rgba(28,16,20,0.55)] via-[rgba(28,16,20,0.4)] to-[rgba(28,16,20,0.65)]" />
 
-      <div className="relative z-10 mx-auto max-w-3xl px-5 text-center">
+      <div className="relative z-10 mx-auto max-w-3xl px-5 pt-32 text-center md:pt-0">
         {/* Trust badge */}
         <div className="animate-fade-up mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
           <span className="text-gold text-sm">★</span>
