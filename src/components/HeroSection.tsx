@@ -1,12 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 
-const WHATSAPP_URL = "https://wa.me/919877695827?text=Hi+Elora%2C+I%27m+interested+in+Lip+Blushing+in+Delhi.+Can+I+book+a+consultation%3F";
+const message = encodeURIComponent("Hi Elora, I'm interested in Lip Blushing in Delhi. Can I book a consultation?");
+const WHATSAPP_URL = `https://wa.me/919877695827?text=${message}`;
 
 export default function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
+    // Client-side guard for scroll effects
+    if (typeof window === "undefined") return;
+
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
@@ -23,20 +28,31 @@ export default function HeroSection() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleVideoError = () => {
+    setVideoError(true);
+  };
+
   return (
     <section className="relative flex min-h-screen items-end justify-center overflow-hidden pb-20 md:items-center md:pb-0">
       {/* Background video */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-100 ease-out md:object-center sm:object-top"
-        poster="/hero-lips.jpg"
-      >
-        <source src="/background-video.mp4" type="video/mp4" />
-      </video>
+      {!videoError && (
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-100 ease-out md:object-center sm:object-top"
+          poster="/hero-lips.jpg"
+          onError={handleVideoError}
+        >
+          <source src="/background-video.mp4" type="video/mp4" />
+        </video>
+      )}
+      {/* Fallback gradient if video fails to load */}
+      {videoError && (
+        <div className="absolute inset-0 bg-gradient-to-br from-rose-deep/90 via-rose-mid/80 to-ink/90" />
+      )}
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[rgba(28,16,20,0.55)] via-[rgba(28,16,20,0.4)] to-[rgba(28,16,20,0.75)] md:via-[rgba(28,16,20,0.3)]" />
 

@@ -2,7 +2,8 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import ba2 from "@/assets/before-after-2.jpg";
 import ba3 from "@/assets/before-after-3.jpg";
 
-const WHATSAPP_URL = "https://wa.me/919877695827?text=Hi+Elora%2C+I%27m+interested+in+Lip+Blushing+in+Delhi.+Can+I+book+a+consultation%3F";
+const message = encodeURIComponent("Hi Elora, I'm interested in Lip Blushing in Delhi. Can I book a consultation?");
+const WHATSAPP_URL = `https://wa.me/919877695827?text=${message}`;
 
 const cards = [
   { img: ba2, caption: "Natural Rosy Tint — 6 months healed" },
