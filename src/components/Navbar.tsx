@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
-const WHATSAPP_URL = "https://wa.me/919877695827?text=Hi+Elora%2C+I%27m+interested+in+Lip+Blushing+in+Delhi.+Can+I+book+a+consultation%3F";
+const message = encodeURIComponent("Hi Elora, I'm interested in Lip Blushing in Delhi. Can I book a consultation?");
+const WHATSAPP_URL = `https://wa.me/919877695827?text=${message}`;
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);

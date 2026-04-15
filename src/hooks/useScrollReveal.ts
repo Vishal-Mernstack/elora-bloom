@@ -5,6 +5,11 @@ export function useScrollReveal(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Client-side guard for IntersectionObserver
+    if (typeof window === "undefined" || typeof IntersectionObserver === "undefined") {
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
